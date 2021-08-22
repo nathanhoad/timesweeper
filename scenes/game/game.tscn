@@ -1,0 +1,250 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://components/board/board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://lib/stats.gd" type="Script" id=2]
+[ext_resource path="res://scenes/game/game.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/title_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/fonts/button_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/images/arrow.svg" type="Texture" id=6]
+[ext_resource path="res://assets/sounds/new_game_2.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/tick.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/found_time.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/your_turn.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/images/clock.svg" type="Texture" id=12]
+[ext_resource path="res://assets/sounds/win.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/sounds/lose.wav" type="AudioStream" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Pointer"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -57.704, 0 ), Vector2( -70, 0 ), Vector2( -50, 0 ) ]
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+new_game_sound = ExtResource( 7 )
+found_time_sound = ExtResource( 9 )
+your_turn_sound = ExtResource( 11 )
+win_sound = ExtResource( 13 )
+lose_sound = ExtResource( 14 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = 0.749146
+margin_top = -0.749146
+margin_right = 1920.75
+margin_bottom = 1079.25
+rect_pivot_offset = Vector2( 1587.56, 69.7008 )
+color = Color( 0.141176, 0.184314, 0.290196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( 68.8597, 12.6439 )
+_stats = NodePath("../Stats")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Player1Rect" type="ColorRect" parent="."]
+margin_left = 1211.3
+margin_top = 174.708
+margin_right = 1936.3
+margin_bottom = 339.708
+color = Color( 0.831373, 0.0784314, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Player1Rect"]
+margin_left = 34.4949
+margin_top = 2.92212
+margin_right = 574.495
+margin_bottom = 97.9221
+rect_pivot_offset = Vector2( 112.523, 45.0133 )
+custom_fonts/font = ExtResource( 5 )
+text = "PLAYER 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Player1Rect"]
+margin_left = 173.512
+margin_top = 73.0034
+margin_right = 289.512
+margin_bottom = 168.003
+rect_pivot_offset = Vector2( 112.523, 45.0133 )
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Player1Rect"]
+margin_left = 232.0
+margin_top = 11.0
+margin_right = 650.0
+margin_bottom = 200.0
+custom_fonts/font = ExtResource( 4 )
+text = "90s"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Player1Rect"]
+show_behind_parent = true
+margin_left = 18.0
+margin_top = 142.0
+margin_right = 728.0
+margin_bottom = 182.0
+color = Color( 0.0741577, 0.0832214, 0.105469, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowPosition" type="Position2D" parent="Player1Rect"]
+position = Vector2( 71.9187, 118.366 )
+
+[node name="Icon" type="Sprite" parent="Player1Rect"]
+position = Vector2( 139.527, 118.051 )
+scale = Vector2( 0.593318, 0.593318 )
+texture = ExtResource( 12 )
+
+[node name="Player2Rect" type="ColorRect" parent="."]
+margin_left = 1211.3
+margin_top = 425.377
+margin_right = 1936.3
+margin_bottom = 590.378
+color = Color( 0.0470588, 0.47451, 0.054902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="Player2Rect"]
+margin_left = 34.4949
+margin_top = 2.92212
+margin_right = 574.495
+margin_bottom = 97.9221
+custom_fonts/font = ExtResource( 5 )
+text = "PLAYER 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="Player2Rect"]
+margin_left = 92.0
+margin_top = 9.58575
+margin_right = 651.0
+margin_bottom = 198.586
+custom_fonts/font = ExtResource( 4 )
+text = "90s"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Player2Rect"]
+show_behind_parent = true
+margin_left = 18.0
+margin_top = 142.0
+margin_right = 728.0
+margin_bottom = 182.0
+color = Color( 0.0741577, 0.0832214, 0.105469, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowPosition" type="Position2D" parent="Player2Rect"]
+position = Vector2( 71.9187, 121.632 )
+
+[node name="Score" type="Label" parent="Player2Rect"]
+margin_left = 173.512
+margin_top = 73.0034
+margin_right = 289.512
+margin_bottom = 168.003
+rect_pivot_offset = Vector2( 112.523, 45.0133 )
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="Sprite" parent="Player2Rect"]
+position = Vector2( 139.527, 118.051 )
+scale = Vector2( 0.593318, 0.593318 )
+texture = ExtResource( 12 )
+
+[node name="Arrow" type="Node2D" parent="."]
+visible = false
+position = Vector2( 1279.55, 191.783 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+autoplay = "Pointer"
+anims/Pointer = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Arrow"]
+position = Vector2( -57.704, 0 )
+texture = ExtResource( 6 )
+
+[node name="Resign" type="LinkButton" parent="."]
+margin_left = 1682.13
+margin_top = 957.35
+margin_right = 1883.13
+margin_bottom = 1052.35
+focus_mode = 2
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "RESIGN"
+underline = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bonus" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.462745 )
+
+[node name="Remainig" type="Label" parent="Bonus"]
+margin_left = 1474.2
+margin_top = 26.7525
+margin_right = 1758.2
+margin_bottom = 121.753
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "10 REMAIN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="Sprite" parent="Bonus"]
+position = Vector2( 1425.45, 71.2288 )
+scale = Vector2( 0.753852, 0.753852 )
+texture = ExtResource( 12 )
+
+[node name="Tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="chose_hazard" from="Board" to="." method="_on_Board_chose_hazard"]
+[connection signal="chose_number" from="Board" to="." method="_on_Board_chose_number"]
+[connection signal="playable_tiles_changed" from="Board" to="." method="_on_Board_playable_tiles_changed"]
+[connection signal="player_1_wins" from="Stats" to="." method="_on_Stats_player_1_wins"]
+[connection signal="player_2_wins" from="Stats" to="." method="_on_Stats_player_2_wins"]
+[connection signal="player_scores_changed" from="Stats" to="." method="_on_Stats_player_scores_changed"]
+[connection signal="player_times_changed" from="Stats" to="." method="_on_Stats_player_times_changed"]
+[connection signal="player_turn_changed" from="Stats" to="." method="_on_Stats_player_turn_changed"]
+[connection signal="pressed" from="Resign" to="." method="_on_Resign_pressed"]

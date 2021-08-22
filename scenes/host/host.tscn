@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/host/host.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/button_font.tres" type="DynamicFont" id=3]
+
+[node name="Host" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.141176, 0.184314, 0.290196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Code" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 532.625
+margin_right = 1922.0
+margin_bottom = 721.625
+custom_fonts/font = ExtResource( 2 )
+text = "CODE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 319.959
+margin_right = 1915.0
+margin_bottom = 512.959
+custom_fonts/font = ExtResource( 3 )
+text = "You need another player.
+They can JOIN with this code:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="LinkButton" parent="."]
+margin_left = 36.0
+margin_top = 951.0
+margin_right = 180.0
+margin_bottom = 1046.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "BACK"
+underline = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="Code" to="." method="_on_Code_gui_input"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

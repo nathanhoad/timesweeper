@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/title_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/button_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://scenes/join/join.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Error"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("InputCode:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 701.0, 640.932, 750.389, 684.0, 701.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InputCode:margin_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1206.0, 1145.93, 1255.39, 1188.65, 1206.0 ]
+}
+
+[node name="Join" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.141176, 0.184314, 0.290196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 6.66516
+margin_top = 356.0
+margin_right = 1913.67
+margin_bottom = 451.0
+custom_fonts/font = ExtResource( 2 )
+text = "Enter a code to join a game:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" type="Label" parent="."]
+visible = false
+margin_left = 8.0
+margin_top = 761.791
+margin_right = 1915.0
+margin_bottom = 856.791
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0.352941, 0, 1 )
+text = "Couldn't connect to that game."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InputCode" type="LineEdit" parent="."]
+margin_left = 699.665
+margin_top = 517.33
+margin_right = 1204.67
+margin_bottom = 716.33
+custom_fonts/font = ExtResource( 1 )
+max_length = 6
+placeholder_text = "000000"
+placeholder_alpha = 0.06
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Error = SubResource( 1 )
+
+[node name="Back" type="LinkButton" parent="."]
+margin_left = 36.0
+margin_top = 951.0
+margin_right = 180.0
+margin_bottom = 1046.0
+focus_mode = 2
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "BACK"
+underline = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="InputCode" to="." method="_on_InputCode_text_changed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
